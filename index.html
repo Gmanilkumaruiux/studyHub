@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StudyHub</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+  /* Navbar */
+    .navbar {
+      background: #1a2a3a;
+      color: white;
+      padding: 15px;
+      position: relative;
+    }
+ /* Hamburger button */
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1001;
+  color: #fff; /* White color */
+}
+
+/* Side Menu */
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  z-index: 2000;
+}
+
+.side-menu.active {
+  width: 50%;
+  min-width:200px  /* or 100% if full-screen kavali */
+}
+
+.side-menu button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 12px;
+  background: orange;
+  color: black;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.side-menu button:hover {
+  opacity: 0.9;
+}
+/* Close button */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      z-index: 2001;
+    }
+ </style> 
+  <style>
+    .form { display: none; }
+    .form.active { display: block; }
+    .error { color: red; display: none; }
+    .success { color: green; display: none; }
+    #dashboard { display: none; }
+
+    /* Page switching */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Tab active style */
+    .tabs .tab.active {
+      font-weight: bold;
+      border-bottom: 2px solid #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+<div id="splash">
+  <img src="https://uploads.onecompiler.io/445ajybcn/445ajzg3e/studyhublogo.png" class="splash-logo" />
+</div>
+
+
+  <!-- DASHBOARD -->
+<div id="dashboard">
+  <nav>
+    <!-- ✅ Hamburger icon here -->
+    <div class="hamburger" onclick="openMenu()">☰</div>
+
+<!-- ONLY ONE SIDE MENU (clean) -->
+  <div id="sideMenu" class="side-menu">
+    <span class="close-btn" onclick="closeMenu()">×</span>
+
+  <!-- PROFILE SECTION -->
+  <div class="profile-box">
+      <span class="profile-icon">👤</span>
+      <span id="profileName">Guest</span>
+  </div>
+
+    <button onclick="location.href='about.html'"><b>About</b></button>
+    <button onclick="location.href='register.html'"><b>Sign In</b></button>
+    <button onclick="logout()"><b>Log Out</b></button>
+
+  </div>
+
+  <main class="wrap">    <div class="logo">
+  <img src="https://uploads.onecompiler.io/445ajybcn/445ajzg3e/studyhublogo.png" alt="StudyHub Logo">
+</div>
+
+    <p class="tagline">Learn, Grow & Achieve - Your journey to success starts here</p>
+
+    <!-- 🔎 SEARCH BAR -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔎Search for courses & roadmaps,Resources,Placements...">
+    </div>
+
+    <div class="tabs">
+      <a class="tab active" data-page="page-courses" href="javascript:void(0)">Courses</a>
+      <a class="tab" data-page="page-Resources" href="javascript:void(0)">Resources</a>
+      <a class="tab" data-page="page-placements" href="javascript:void(0)">Placements</a>
+      <a class="tab" data-page="page-Projects" href="javascript:void(0)">Projects</a>
+      <a class="tab" data-page="page-contact" href="javascript:void(0)">Contact</a>
+    </div>
+  </nav>
+
+  
+<!-- Side Menu -->
+<div id="sideMenu" class="side-menu">
+  <span class="close-btn" onclick="closeMenu()">×</span>
+
+  <button onclick="location.href='contact.html'">About</button>
+<button onclick="window.location.href='/register.html'">Sign In</button>
+
+
+  <button onclick="logout()">Log Out</button>
+</div>
+
+    <main class="wrap">
+    
+<!-- COURSES -->
+<section id="page-courses" class="page active" data-search-section>
+
+        <h2 class="section-title">Courses & Roadmaps</h2>
+        <div class="stack">
+
+          <div class="card">
+            <h2>Fullstack Developer</h2>
+            <p>HTML → CSS → JS → MySQL → MongoDB</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/16LpXDl9pYlkwd9DMxT_u4sEr62FMbrH6/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+          <div class="card">
+            <h2>Front-End Developer</h2>
+            <p>HTML → CSS → JS → React → Node.js</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/16ajhfbWcIGJqZVeC5wno7Vrmw3Lm-oHQ/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+          <div class="card">
+            <h2>Java Developer</h2>
+            <p>Java Basics → Java Frameworks → Oops → Exceptions</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/19qqga5Vm6R8fZxyJPKt13HEozzyO0mVk/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+          <div class="card">
+            <h2>Python Developer</h2>
+            <p>Data Structures → Control Flow → Oops → Deploy</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/1A-Q15uPhGGYtBro31955DpLr0IC-_eZ3/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+         <div class="card">
+            <h2>DevOps Engineer</h2>
+            <p>Linux → Git & GitHub → AWS/AZURE → CI/CD Tools</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/16rq8ssCZejtTD6CERJjEhLGsgmpWYvqK/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+          <div class="card">
+            <h2>AI Engineer</h2>
+            <p>Mathematics & Statistics → Python → ML Algorithms</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/1772XddABMNPhzJSEcCDQu6Tv_7c8EkqC/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+          <div class="card">
+            <h2>Data Engineer</h2>
+            <p>Python/Java → DataBase Fundamentals → Cloud Computing → Big Data Tools</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/1709gxJe60XNsDlj6f7ol2lChZCLs7FkI/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+          <div class="card">
+            <h2>SQL/DataBase Engineer</h2>
+            <p>Fundamentals → Core Commands → RealWorld Senarios</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/16fyXtPaMZDrtA9l-sLuDtBbCFbdj9-uN/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+          
+          <div class="card">
+            <h2>AWS Engineer</h2>
+            <p>EC2 → S3 → VPC → Cloud Watch</p>
+            <button class="btn" onclick="window.open('https://drive.google.com/file/d/17NPLC5WCmQRJgvwB4x0nqRLmDpQhfpJK/view?usp=sharing', '_blank')">View Roadmap</button>
+          </div>
+
+
+        </div>
+      </section>
+
+            <!-- MATERIALS -->
+        <section id="page-Resources" class="page" data-search-section>
+
+
+        <h2 class="section-title">Resource Library</h2>
+        <div class="stack">
+          <div class="card"><h2>Fullstack</h2><p>HTML → CSS → JS → Express → DataBase </p><button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1jJovGut5is93o6PAU24JVn_6MuODAeKE?usp=drive_link', '_blank')">View Resource</button></div>
+          <div class="card"><h2>Front-End</h2><p>HTML → CSS → JS → React</p><button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1qNoUGSIvjqM1dQddxtqzegX4iny27vH5?usp=drive_link', '_blank')">View Resource</button></div>
+          <div class="card"><h2>Back-End</h2><p>DataBase → SQL → Node JS → Python</p><button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1NrWklj311YpQ7fJ9JQ94CblAAM1GGDxG?usp=drive_link', '_blank')">View Resource</button></div>
+          <div class="card"><h2>Python</h2><p>Data Structures → Control Flow → Oops</p><button class="btn" onclick="window.open('https://drive.google.com/file/d/117_FX-6QvRtTZ0Qoi7weFIn23TtwQtnz/view?usp=drive_link', '_blank')">View Resource</button></div>
+          <div class="card"><h2>Java</h2><p>Java Basics → Java Frameworks → Oops → Exceptions</p><button class="btn" onclick="window.open('https://drive.google.com/file/d/10zCVo3EUC03mo-hUOIl1CQW3svQ_Dpis/view?usp=drive_link', '_blank')">View Resource</button></div>
+         <div class="card"><h2>Data Science</h2><p>Mathematics & Statistics → Python → ML Algorithms</p><button class="btn" onclick="window.open('https://drive.google.com/file/d/1gknw1pB9F8wDvO6uW86cvocVoZy56dzA/view?usp=drive_link', '_blank')">View Resource</button></div>
+        <div class="card"><h2>DevOps</h2><p>Linux → Git & GitHub → AWS/AZURE → CI/CD Tools</p><button class="btn" onclick="window.open('https://drive.google.com/file/d/18xFKbc-TDZ7NHO-CzMG900sn8RtdFUQH/view?usp=drive_link', '_blank')">View Resource</button></div>
+        <div class="card"><h2>AWS</h2><p>EC2 → S3 → VPC → Cloud Watch</p><button class="btn" onclick="window.open('https://drive.google.com/file/d/1cj0piJBuLAPzK8wW8zYzxJ-pUDa5NLEE/view?usp=drive_link', '_blank')">View Resource</button></div>
+        
+        </div>
+      </section>
+
+       <!-- PLACEMENT -->
+<section id="page-placements" class="page" data-search-section>
+
+
+        <h2 class="section-title">Placement Guidance</h2>
+        <div class="stack">
+          <div class="card"><h2>Interview Prep</h2><button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1CMu4s7sdBKG52541kS8Xq3LeiA3bZhtr?usp=drive_link ', '_blank')">View Resource</button></div>
+          <div class="card"><h2>Resume Tips</h2><button class="btn" onclick="window.open('https://drive.google.com/file/d/1nHTkyqyFnssjaG36n0s2XzsK97p8bMMX/view?usp=drive_link', '_blank')">View Tips</button></div>
+          <div class="card"><h2>Interview Questions</h2><button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1INPjiVAeqRgsgXRbTK74sO2KrJS2OIVn?usp=drive_link', '_blank')">View Resource</button></div>
+        </div>
+      </section>
+
+
+    <!-- PROJECTS -->
+<section id="page-Projects" class="page" data-search-section>
+
+
+        <h2 class="section-title">Project Ideas</h2>
+       <div class="card"><h2>500+ Project Ideas</h2><button class="btn" onclick="window.open('https://drive.google.com/file/d/15ZmMDKl43kmath15IvW3Az2Y8aaPKaJp/view?usp=drive_link', '_blank')">View Resource</button></div>
+        </section>
+
+        <!-- CONTACT -->
+
+        <section id="page-contact" class="page">
+        <h2 class="section-title">Contact</h2>
+        <div class="card"><p><a href="mailto:studyhub1123@gmail.com">studyhub1123@gmail.com</a></p>
+        <button class="btn" onclick="window.location.href='message.html'">Send Message</button></section> </div> <!-- closes wrap -->
+</main>
+</div>
+<a href="https://gmanilkumaruiux.github.io/StudyBot/" target="_blank" id="chatLauncher">
+  🎓
+</a>
+
+<footer>
+  <h2>StudyHub</h2>
+  <div>• Simple tools for smarter learning.</div>
+
+  <div class="footer-links">
+    <a href="javascript:void(0)" onclick="openTab('page-courses')">Home</a> •
+    <a href="javascript:void(0)" onclick="openTab('page-courses')">Courses & Roadmaps</a> •
+    <a href="javascript:void(0)" onclick="openTab('page-Resources')">Resources</a> •
+    <a href="javascript:void(0)" onclick="openTab('page-placements')">Placements</a> •
+    <a href="javascript:void(0)" onclick="openTab('page-contact')">Contact</a>
+  </div>
+
+  <div>
+    <a href="#">Privacy Policy</a> •
+    <a href="#">Terms</a>
+  </div>
+
+  <div>© 2025 StudyHub • All rights reserved.</div>
+</footer>
+
+
+<script>
+  // TAB SWITCHING
+  const tabs = document.querySelectorAll(".tab");
+  const pages = document.querySelectorAll(".page");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      pages.forEach(p => p.classList.remove("active"));
+
+      tab.classList.add("active");
+      document.querySelector(`#${tab.dataset.page}`).classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  // SEARCH
+ // SEARCH FUNCTION
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+  searchInput.addEventListener("keyup", () => {
+
+    let filter = searchInput.value.toLowerCase();
+    let cards = document.querySelectorAll("#page-courses .card");
+
+    cards.forEach(card => {
+      let content = card.innerText.toLowerCase();
+      card.style.display = content.includes(filter) ? "block" : "none";
+    });
+
+    // Always switch to courses tab when searching
+    document.querySelector("[data-page='page-courses']").click();
+  });
+}
+  // SIDE MENU
+  function openMenu() {
+    document.getElementById("sideMenu").classList.add("active");
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").classList.remove("active");
+  }
+
+  function logout() {
+  let user = localStorage.getItem("loggedInUser");
+
+  if (!user) {
+    alert("You are not logged in.");
+    return;
+  }
+
+  // delete session
+  localStorage.removeItem("loggedInUser");
+
+  // show goodbye message
+  alert("Thanks for visiting StudyHub!");
+
+  // redirect to login/register page
+  window.location.href = "register.html";
+}
+function openTab(pageId) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+
+  document.getElementById(pageId).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// SHOW USERNAME IN SIDEBAR
+function loadProfileName() {
+  let user = localStorage.getItem("loggedInUser");
+
+  if (user) {
+    document.getElementById("profileName").innerText = user;
+  } else {
+    document.getElementById("profileName").innerText = "Guest";
+  }
+}
+
+loadProfileName();
+
+  // Hide splash after 3 seconds (backup)
+  setTimeout(() => {
+    document.getElementById("splash").style.display = "none";
+  }, 4500);
+
+</script>
+</body>
+</html>

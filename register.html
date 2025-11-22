@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Account • StudyHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    background: #f5f7fb;
+    font-family: system-ui;
+    margin: 0;
+    padding: 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+
+  .auth-box {
+    width: 350px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  }
+
+  h2 {
+    text-align:center;
+    margin-bottom:20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    background: orange;
+    border:none;
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  p {
+    margin-top:12px;
+    text-align:center;
+  }
+
+  p span {
+    color:#1a2a3a;
+    font-weight:bold;
+    cursor:pointer;
+  }
+
+  .hidden { display:none; }
+  .error { color:red; text-align:center; display:none; margin-top:10px; }
+  .success { color:green; text-align:center; display:none; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<div class="auth-box">
+
+  <!-- REGISTER IS DEFAULT -->
+  <div id="registerForm">
+    <h2>Create Account</h2>
+
+    <input type="text" id="regUser" placeholder="Choose Username">
+    <input type="password" id="regPass" placeholder="Choose Password">
+
+    <button onclick="register()">Create Account</button>
+
+    <div id="regError" class="error">Username already exists</div>
+    <div id="regSuccess" class="success">Account created! Opening login...</div>
+
+    <p>Already have an account? <span onclick="showLogin()">Login</span></p>
+  </div>
+
+  <!-- LOGIN (HIDDEN INITIALLY) -->
+  <div id="loginForm" class="hidden">
+    <h2>Login</h2>
+
+    <input type="text" id="loginUser" placeholder="Username">
+    <input type="password" id="loginPass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <div id="loginError" class="error">Invalid username or password</div>
+
+    <p>New user? <span onclick="showRegister()">Create Account</span></p>
+  </div>
+
+</div>
+
+<script>
+  // SHOW LOGIN FORM
+  function showLogin() {
+    document.getElementById("registerForm").classList.add("hidden");
+    document.getElementById("loginForm").classList.remove("hidden");
+  }
+
+  // SHOW REGISTER FORM
+  function showRegister() {
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("registerForm").classList.remove("hidden");
+  }
+
+  // REGISTER
+  function register() {
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let u = document.getElementById("regUser").value.trim();
+    let p = document.getElementById("regPass").value;
+
+    if (!u || !p) return alert("Please fill all fields");
+
+    if (users[u]) {
+      document.getElementById("regError").style.display = "block";
+      document.getElementById("regSuccess").style.display = "none";
+    } else {
+      users[u] = p;
+      localStorage.setItem("users", JSON.stringify(users));
+
+      document.getElementById("regSuccess").style.display = "block";
+      document.getElementById("regError").style.display = "none";
+
+      setTimeout(showLogin, 1200);
+    }
+  }
+
+  // LOGIN
+  function login() {
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let u = document.getElementById("loginUser").value.trim();
+    let p = document.getElementById("loginPass").value;
+
+    if (users[u] && users[u] === p) {
+      localStorage.setItem("loggedInUser", u);
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("loginError").style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
